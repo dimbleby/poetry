@@ -196,10 +196,12 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = [
-    {{file = "bar", hash = "123"}},
-    {{file = "foo", hash = "456"}},
+    {{ file = "bar", hash = "123" }},
+    {{ file = "foo", hash = "456" }},
 ]
 
 [package.dependencies]
@@ -211,9 +213,11 @@ version = "2.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = [
-    {{file = "baz", hash = "345"}},
+    {{ file = "baz", hash = "345" }},
 ]
 
 [[package]]
@@ -222,7 +226,9 @@ version = "1.2"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [[package]]
@@ -231,7 +237,9 @@ version = "1.2.3"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 develop = false
 
@@ -247,7 +255,9 @@ version = "1.2.3"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 develop = false
 
@@ -264,7 +274,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.source]
@@ -277,7 +289,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.source]
@@ -303,7 +317,9 @@ version = "0.12.5"
 description = "httplib2 caching for requests"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
@@ -349,7 +365,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
@@ -364,7 +382,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
@@ -379,7 +399,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [metadata]
@@ -430,7 +452,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
@@ -445,7 +469,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [metadata]
@@ -479,7 +505,9 @@ version = "1.2.3"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 files = []
 
@@ -600,7 +628,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 
 [[package]]
@@ -609,7 +639,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 
 [package.source]
@@ -624,7 +656,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 
 [package.source]
@@ -637,7 +671,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 
 [package.source]
@@ -650,7 +686,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = false
 
 [package.source]
@@ -721,7 +759,9 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [metadata]
@@ -759,9 +799,11 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = [
-    {{file = "a-1.0.whl", hash = "sha256:abcdef1234567890"}},
+    {{ file = "a-1.0.whl", hash = "sha256:abcdef1234567890" }},
 ]
 
 [metadata]
@@ -795,17 +837,21 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
 B = [
-    {{version = "^1.0.0"}},
-    {{version = ">=1.0.0", optional = true}},
+    {{ version = "^1.0.0" }},
+    {{ version = ">=1.0.0", optional = true }},
 ]
 
 [package.extras]
-foo = ["B (>=1.0.0)"]
+foo = [
+    "B (>=1.0.0)",
+]
 
 [metadata]
 lock-version = "2.1"
@@ -831,7 +877,9 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.extras]
@@ -866,7 +914,9 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.source]
@@ -912,7 +962,9 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.source]
@@ -1014,11 +1066,20 @@ def test_root_extras_dependencies_are_ordered(
 
     expected = f"""\
 # {GENERATED_COMMENT}
+
 package = []
 
 [extras]
-b = ["first", "second", "third"]
-c = ["first", "second", "third"]
+b = [
+    "first",
+    "second",
+    "third",
+]
+c = [
+    "first",
+    "second",
+    "third",
+]
 
 [metadata]
 lock-version = "2.1"
@@ -1054,11 +1115,19 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
-[package.dependencies]
-B = {{version = "^1.0.0", extras = ["a", "b", "c"], optional = true}}
+[package.dependencies.B]
+version = "^1.0.0"
+extras = [
+    "a",
+    "b",
+    "c",
+]
+optional = true
 
 [metadata]
 lock-version = "2.1"
@@ -1152,7 +1221,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [[package]]
@@ -1161,7 +1232,9 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 markers = "sys_platform == \\"win32\\""
 files = []
 
@@ -1171,7 +1244,10 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main", "dev"]
+groups = [
+    "main",
+    "dev",
+]
 files = []
 
 [[package]]
@@ -1180,7 +1256,10 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main", "dev"]
+groups = [
+    "main",
+    "dev",
+]
 markers = "sys_platform == \\"win32\\""
 files = []
 
@@ -1190,9 +1269,15 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main", "dev"]
+groups = [
+    "main",
+    "dev",
+]
 files = []
-markers = {{main = "sys_platform == \\"win32\\"", dev = "sys_platform == \\"linux\\""}}
+
+[package.markers]
+main = "sys_platform == \\"win32\\""
+dev = "sys_platform == \\"linux\\""
 
 [[package]]
 name = "F"
@@ -1200,9 +1285,14 @@ version = "1.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main", "dev"]
+groups = [
+    "main",
+    "dev",
+]
 files = []
-markers = {{main = "sys_platform == \\"win32\\""}}
+
+[package.markers]
+main = "sys_platform == \\"win32\\""
 
 [metadata]
 lock-version = "2.1"
@@ -1283,18 +1373,39 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
-[package.dependencies]
-B = {{path = "project_with_extras", develop = true}}
-C = {{path = "directory/project_with_transitive_directory_dependencies"}}
-D = {{path = "distributions/demo-0.1.0.tar.gz"}}
-E = {{url = "https://files.pythonhosted.org/poetry-1.2.0.tar.gz"}}
-F = {{git = "https://github.com/python-poetry/poetry.git", branch = "foo"}}
-G = {{git = "https://github.com/python-poetry/poetry.git", subdirectory = "bar"}}
-H = {{git = "https://github.com/python-poetry/poetry.git", tag = "baz"}}
-I = {{git = "https://github.com/python-poetry/poetry.git", rev = "spam"}}
+[package.dependencies.B]
+path = "project_with_extras"
+develop = true
+
+[package.dependencies.C]
+path = "directory/project_with_transitive_directory_dependencies"
+
+[package.dependencies.D]
+path = "distributions/demo-0.1.0.tar.gz"
+
+[package.dependencies.E]
+url = "https://files.pythonhosted.org/poetry-1.2.0.tar.gz"
+
+[package.dependencies.F]
+git = "https://github.com/python-poetry/poetry.git"
+branch = "foo"
+
+[package.dependencies.G]
+git = "https://github.com/python-poetry/poetry.git"
+subdirectory = "bar"
+
+[package.dependencies.H]
+git = "https://github.com/python-poetry/poetry.git"
+tag = "baz"
+
+[package.dependencies.I]
+git = "https://github.com/python-poetry/poetry.git"
+rev = "spam"
 
 [metadata]
 lock-version = "2.1"
@@ -1332,7 +1443,9 @@ version = "1.2.3"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 develop = false
 
@@ -1384,12 +1497,22 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.extras]
-b = ["first (==1.0.0)", "second (==1.0.0)", "third (==1.0.0)"]
-c = ["first (==1.0.0)", "second (==1.0.0)", "third (==1.0.0)"]
+b = [
+    "first (==1.0.0)",
+    "second (==1.0.0)",
+    "third (==1.0.0)",
+]
+c = [
+    "first (==1.0.0)",
+    "second (==1.0.0)",
+    "third (==1.0.0)",
+]
 
 [metadata]
 lock-version = "2.1"
@@ -1436,11 +1559,16 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.extras]
-http = ["httpx (==1.0.0) ; python_version < \\"3.7\\"", "httpx[brotli] (==2.0.0) ; python_version >= \\"3.7\\""]
+http = [
+    "httpx (==1.0.0) ; python_version < \\"3.7\\"",
+    "httpx[brotli] (==2.0.0) ; python_version >= \\"3.7\\"",
+]
 
 [metadata]
 lock-version = "2.1"
@@ -1461,11 +1589,16 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.extras]
-http = ["httpx (==1.0.0) ; python_version < \\"3.7\\"", "httpx[brotli] (==2.0.0) ; python_version >= \\"3.7\\""]
+http = [
+    "httpx (==1.0.0) ; python_version < \\"3.7\\"",
+    "httpx[brotli] (==2.0.0) ; python_version >= \\"3.7\\"",
+]
 
 [metadata]
 lock-version = "2.1"
@@ -1506,7 +1639,9 @@ version = "0.1.0"
 description = ""
 optional = false
 python-versions = "^2.7.9"
-groups = ["main"]
+groups = [
+    "main",
+]
 develop = true
 file = []
 
@@ -1802,7 +1937,9 @@ version = "1.2.3"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.source]
@@ -1853,27 +1990,6 @@ content-hash = "115cf985d932e9bf5f540555bbdd75decbb62cac81e399375fc19f6277f8c1d8
     assert content == old_content
 
 
-def test_lockfile_keep_eol(
-    locker: Locker, root: ProjectPackage, transitive_info: TransitivePackageInfo
-) -> None:
-    sep = "\n" if os.linesep == "\r\n" else "\r\n"
-
-    with open(locker.lock, "wb") as f:
-        f.write((sep * 10).encode())
-
-    packages = {Package("test", version="0.0.1"): transitive_info}
-
-    assert locker.set_lock_data(root, packages)
-
-    with locker.lock.open(encoding="utf-8", newline="") as f:
-        line, *_ = f.read().splitlines(keepends=True)
-
-    if sep == "\r\n":
-        assert line.endswith("\r\n")
-    else:
-        assert not line.endswith("\r\n")
-
-
 def test_lock_file_dependency_constraints_are_ordered_deterministically(
     locker: Locker, root: ProjectPackage, transitive_info: TransitivePackageInfo
 ) -> None:
@@ -1906,13 +2022,15 @@ version = "1.0.0"
 description = ""
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = [
+    "main",
+]
 files = []
 
 [package.dependencies]
 B = [
-    {{version = ">=1.0", markers = "sys_platform == \\"linux\\""}},
-    {{version = ">=2.0", markers = "sys_platform == \\"win32\\""}},
+    {{ version = ">=1.0", markers = "sys_platform == \\"linux\\"" }},
+    {{ version = ">=2.0", markers = "sys_platform == \\"win32\\"" }},
 ]
 
 [metadata]

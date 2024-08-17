@@ -37,7 +37,6 @@ if TYPE_CHECKING:
     from poetry.core.packages.dependency import Dependency
     from pytest_mock import MockerFixture
     from requests import PreparedRequest
-    from tomlkit.toml_document import TOMLDocument
 
     from poetry.installation.operations.operation import Operation
     from poetry.poetry import Poetry
@@ -210,7 +209,7 @@ class DummyLocker(Locker):
     def is_fresh(self) -> bool:
         return True
 
-    def _write_lock_data(self, data: TOMLDocument) -> None:
+    def _write_lock_data(self, data: dict[str, Any]) -> None:
         if self._write:
             super()._write_lock_data(data)
             self._locked = True
