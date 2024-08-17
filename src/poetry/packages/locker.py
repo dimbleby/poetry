@@ -13,6 +13,8 @@ from typing import Any
 from typing import ClassVar
 from typing import cast
 
+import tomli_w
+
 from packaging.utils import canonicalize_name
 from poetry.core.constraints.version import Version
 from poetry.core.constraints.version import parse_constraint
@@ -20,15 +22,9 @@ from poetry.core.packages.dependency import Dependency
 from poetry.core.packages.package import Package
 from poetry.core.version.markers import parse_marker
 from poetry.core.version.requirements import InvalidRequirementError
-from tomlkit import array
-from tomlkit import comment
-from tomlkit import document
-from tomlkit import inline_table
-from tomlkit import table
 
 from poetry.__version__ import __version__
 from poetry.packages.transitive_package_info import TransitivePackageInfo
-from poetry.toml.file import TOMLFile
 from poetry.utils._compat import tomllib
 
 
@@ -38,7 +34,6 @@ if TYPE_CHECKING:
     from poetry.core.packages.file_dependency import FileDependency
     from poetry.core.packages.url_dependency import URLDependency
     from poetry.core.packages.vcs_dependency import VCSDependency
-    from tomlkit.toml_document import TOMLDocument
 
     from poetry.repositories.lockfile_repository import LockfileRepository
 
@@ -186,24 +181,14 @@ class Locker:
 
     def _compute_lock_data(
         self, root: Package, packages: dict[Package, TransitivePackageInfo]
-    ) -> TOMLDocument:
+    ) -> dict[str, Any]:
         package_specs = self._lock_packages(packages)
+
         # Retrieving hashes
         for package in package_specs:
-            files = array()
+            package["files"] = [dict(sorted(f.items())) for f in package["files"]]
 
-            for f in package["files"]:
-                file_metadata = inline_table()
-                for k, v in sorted(f.items()):
-                    file_metadata[k] = v
-
-                files.append(file_metadata)
-
-            package["files"] = files.multiline(True)
-
-        lock = document()
-        lock.add(comment(GENERATED_COMMENT))
-        lock["package"] = package_specs
+        lock: dict[str, Any] = {"package": package_specs}
 
         if root.extras:
             lock["extras"] = {
@@ -219,7 +204,7 @@ class Locker:
 
         return lock
 
-    def _should_write(self, lock: TOMLDocument) -> bool:
+    def _should_write(self, lock: dict[str, Any]) -> bool:
         # if lock file exists: compare with existing lock data
         do_write = True
         if self.is_locked():
@@ -232,34 +217,10 @@ class Locker:
                 do_write = lock != lock_data
         return do_write
 
-    def _write_lock_data(self, data: TOMLDocument) -> None:
-        if self.lock.exists():
-            # The following code is roughly equivalent to
-            # • lockfile = TOMLFile(self.lock)
-            # • lockfile.read()
-            # • lockfile.write(data)
-            # However, lockfile.read() takes more than half a second even
-            # for a modestly sized project like Poetry itself and the only reason
-            # for reading the lockfile is to determine the line endings. Thus,
-            # we do that part for ourselves here, which only takes about 10 ms.
-
-            # get original line endings
-            with open(self.lock, encoding="utf-8", newline="") as f:
-                line = f.readline()
-            linesep = "\r\n" if line.endswith("\r\n") else "\n"
-
-            # enforce original line endings
-            content = data.as_string()
-            if linesep == "\n":
-                content = content.replace("\r\n", "\n")
-            elif linesep == "\r\n":
-                content = re.sub(r"(?<!\r)\n", "\r\n", content)
-            with open(self.lock, "w", encoding="utf-8", newline="") as f:
-                f.write(content)
-
-        else:
-            lockfile = TOMLFile(self.lock)
-            lockfile.write(data)
+    def _write_lock_data(self, data: dict[str, Any]) -> None:
+        with self.lock.open("wb") as f:
+            f.write(f"# {GENERATED_COMMENT}\n\n".encode())
+            tomli_w.dump(data, f)
 
         self._lock_data = None
 
@@ -483,7 +444,7 @@ class Locker:
         ):
             dependencies.setdefault(dependency.pretty_name, [])
 
-            constraint = inline_table()
+            constraint: dict[str, Any] = {}
 
             if dependency.is_directory():
                 dependency = cast("DirectoryDependency", dependency)
@@ -552,7 +513,7 @@ class Locker:
                 if not (marker := next(iter(markers))).is_any():
                     data["markers"] = str(marker)
             else:
-                data["markers"] = inline_table()
+                data["markers"] = {}
                 for k, v in sorted(
                     transitive_info.markers.items(),
                     key=lambda x: (x[0] != "main", x[0]),
@@ -562,14 +523,12 @@ class Locker:
         data["files"] = sorted(package.files, key=lambda x: x["file"])
 
         if dependencies:
-            data["dependencies"] = table()
+            data["dependencies"] = {}
             for k, constraints in dependencies.items():
                 if len(constraints) == 1:
                     data["dependencies"][k] = constraints[0]
                 else:
-                    data["dependencies"][k] = array().multiline(True)
-                    for constraint in constraints:
-                        data["dependencies"][k].append(constraint)
+                    data["dependencies"][k] = constraints
 
         if package.extras:
             extras = {}
